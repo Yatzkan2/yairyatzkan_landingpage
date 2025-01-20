@@ -1,0 +1,28 @@
+services:
+  db: 
+    build: 
+      context: ./db
+      dockerfile: Dockerfile
+    environment:
+      - MYSQL_DATABASE=php_docker
+      - MYSQL_USER=php_docker
+      - MYSQL_PASSWORD=password 
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1 
+    ports:
+      - "3309:3306"
+
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 83:80
+
+
+  frontend: 
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 8003:80
+
